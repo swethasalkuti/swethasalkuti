@@ -17,7 +17,7 @@ where Location = 'United states'
 and continent is not null
 order by 2
 
---Comparing population and total cases to show what percentage of population infected with Covid
+--Comparing population and total cases to show what percentage of population are infected with Covid
 --30% of total population has been infected with COVID in United States until 5th July 2023
 select Location, date, population, total_cases, (total_cases/population)*100 as infectedpercentage
 from CovidDeaths2023
@@ -84,7 +84,7 @@ order by 1,2
 Select *
 From #totaltests
 
---Number of vaccinations given to people each location on daily basis
+--Number of vaccinations for each location on daily basis
 Select death.continent, death.location, death.date, death.population, vaccine.new_vaccinations,
 SUM(cast(vaccine.new_vaccinations as float)) OVER (Partition by death.Location Order by death.location, death.Date) as RollingVaccinations
 From CovidDeaths2023 death
